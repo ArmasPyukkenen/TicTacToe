@@ -108,7 +108,16 @@ let canvasRepresentation = (function(){
             field.top = (domEls.canvas.height - field.side) / 2;
             ctx = domEls.canvas.getContext('2d');
             ctx.fillStyle = '#bbbbff';
-            ctx.fillRect( field.left, field.top, field.side, field.side);           
+            ctx.fillRect( field.left, field.top, field.side, field.side);
+            for(let i = 1; i < cells ; i++){
+                ctx.beginPath();
+                ctx.moveTo(field.left + i * cellWidth, field.top);
+                ctx.lineTo(field.left + i * cellWidth, field.top + field.side);
+                ctx.stroke();
+                ctx.moveTo(field.left, field.top + i * cellWidth);
+                ctx.lineTo(field.left + field.side, field.top + i * cellWidth);
+                ctx.stroke();
+            }       
         },
         
         addMark : function(x, y, type){
